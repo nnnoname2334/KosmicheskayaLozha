@@ -69,6 +69,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\MasterService.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\ServiceType.cs" />
