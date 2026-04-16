@@ -10,11 +10,13 @@ namespace KosmicheskayaLozha
         {
             base.OnStartup(e);
 
-            // Проверяем подключение к БД
             try
             {
-                using var db = new AppDbContext();
-                db.Database.CanConnect();
+                using (var db = new AppDbContext())
+                {
+                    db.Database.Connection.Open();
+                    db.Database.Connection.Close();
+                }
             }
             catch (Exception ex)
             {

@@ -1,13 +1,15 @@
 ﻿using KosmicheskayaLozha.Models;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Reflection.Emit;
-using System.Runtime.Remoting.Contexts;
+using System.Data.Entity;
 
 namespace KosmicheskayaLozha.Data
 {
     public class AppDbContext : DbContext
     {
+        public AppDbContext()
+            : base("name=KosmicheskayaLozha")
+        {
+        }
+
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<ServiceType> ServiceTypes { get; set; }
@@ -20,35 +22,28 @@ namespace KosmicheskayaLozha.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            optionsBuilder.UseSqlServer(
-                "Server=localhost;Database=KosmicheskayaLozha;Trusted_Connection=True;TrustServerCertificate=True;"
-            );
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            // Связь Appointment → Client (может быть null)
+            // Связь Appointment → Client
             modelBuilder.Entity<Appointment>()
-                .HasOne(a => a.Client)
+                .HasOptional(a => a.Client)
                 .WithMany(u => u.AppointmentsAsClient)
                 .HasForeignKey(a => a.ClientId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .WillCascadeOnDelete(false);
 
             // Связь Appointment → Master
             modelBuilder.Entity<Appointment>()
-                .HasOne(a => a.Master)
+                .HasRequired(a => a.Master)
                 .WithMany(u => u.AppointmentsAsMaster)
                 .HasForeignKey(a => a.MasterId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .WillCascadeOnDelete(false);
 
             // Связь MasterService → Master
             modelBuilder.Entity<MasterService>()
-                .HasOne(ms => ms.Master)
+                .HasRequired(ms => ms.Master)
                 .WithMany(u => u.MasterServices)
                 .HasForeignKey(ms => ms.MasterId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .WillCascadeOnDelete(false);
         }
     }
 }
