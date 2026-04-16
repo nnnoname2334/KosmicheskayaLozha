@@ -70,7 +70,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\Manufacturer.cs" />
     <Compile Include="Models\MasterService.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderItem.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductType.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\ServiceType.cs" />
     <Compile Include="Models\User.cs" />
