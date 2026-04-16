@@ -1,17 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using KosmicheskayaLozha.Data;
+using System;
 using System.Windows;
 
 namespace KosmicheskayaLozha
 {
-    /// <summary>
-    /// Логика взаимодействия для App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            // Проверяем подключение к БД
+            try
+            {
+                using var db = new AppDbContext();
+                db.Database.CanConnect();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка подключения к БД:\n{ex.Message}",
+                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                Shutdown();
+            }
+        }
     }
 }
