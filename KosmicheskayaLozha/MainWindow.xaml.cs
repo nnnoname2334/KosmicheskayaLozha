@@ -39,16 +39,16 @@ namespace KosmicheskayaLozha
             switch (user.Role.RoleName)
             {
                 case "Клиент":
-                    nextWindow = new MainMenuWindow();
+                    nextWindow = new KosmicheskayaLozha.Views.MainMenuWindow();
                     break;
                 case "Мастер":
-                    nextWindow = new MasterWindow();
+                    nextWindow = new KosmicheskayaLozha.Views.MasterWindow();
                     break;
                 case "Менеджер":
-                    nextWindow = new ManagerWindow();
+                    nextWindow = new KosmicheskayaLozha.Views.ManagerWindow();
                     break;
                 case "Администратор":
-                    nextWindow = new AdminWindow();
+                    nextWindow = new KosmicheskayaLozha.Views.AdminWindow();
                     break;
             }
 
@@ -56,6 +56,10 @@ namespace KosmicheskayaLozha
             {
                 nextWindow.Show();
                 this.Close();
+            }
+            else
+            {
+                MessageBox.Show($"nextWindow = null! Роль: '{user.Role?.RoleName ?? "NULL"}'");
             }
         }
     }

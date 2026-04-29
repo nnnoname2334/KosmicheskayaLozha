@@ -16,5 +16,10 @@ namespace KosmicheskayaLozha.Models
         public User Client { get; set; }
         public User Master { get; set; }
         public ServiceType ServiceType { get; set; }
+
+
+        public string DateTimeText { get; set; }
+        
+        public string PriceText { get; set; }
     }
 }

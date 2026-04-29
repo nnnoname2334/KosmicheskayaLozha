@@ -24,6 +24,11 @@ namespace KosmicheskayaLozha.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>().Ignore(u => u.ServicesText);
+
+            modelBuilder.Entity<Appointment>().Ignore(a => a.DateTimeText);
+            modelBuilder.Entity<Appointment>().Ignore(a => a.PriceText);
+
             // Связь Appointment → Client
             modelBuilder.Entity<Appointment>()
                 .HasOptional(a => a.Client)

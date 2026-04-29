@@ -24,5 +24,7 @@ namespace KosmicheskayaLozha.Models
 
         // Удобное свойство — ФИО одной строкой
         public string FullName => $"{LastName} {FirstName} {MiddleName}".Trim();
+        // Для отображения на главной странице
+        public string ServicesText { get; set; }
     }
 }
