@@ -1,12 +1,156 @@
 ﻿<Window x:Class="KosmicheskayaLozha.Views.MainMenuWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Главная" Height="600" Width="900"
+        Title="Космическая ложа" Height="700" Width="1000"
         WindowStartupLocation="CenterScreen">
-    <Grid>
-        <TextBlock Text="Главная страница" 
-                   FontSize="24" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center"/>
+
+    <Grid Background="#F5F0FF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Шапка -->
+        <Grid Grid.Row="0" Background="#7B2D8B">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="🌸 Космическая ложа"
+                       FontSize="22" FontWeight="Bold"
+                       Foreground="White" VerticalAlignment="Center"
+                       Margin="20,0,0,0"/>
+
+            <Button Grid.Column="1" x:Name="AccountButton"
+                    Content="👤 Аккаунт"
+                    Margin="5,15" Padding="15,5"
+                    Background="White" Foreground="#7B2D8B"
+                    FontWeight="Bold" BorderThickness="0"
+                    Cursor="Hand" Visibility="Collapsed"
+                    Click="AccountButton_Click"/>
+
+            <Button Grid.Column="2"
+                    Content="🛍 Товары"
+                    Margin="5,15" Padding="15,5"
+                    Background="White" Foreground="#7B2D8B"
+                    FontWeight="Bold" BorderThickness="0"
+                    Cursor="Hand"
+                    Click="ProductsButton_Click"/>
+
+            <Button Grid.Column="3" x:Name="LoginButton"
+                    Content="Войти"
+                    Margin="5,15,20,15" Padding="15,5"
+                    Background="#FF80AB" Foreground="White"
+                    FontWeight="Bold" BorderThickness="0"
+                    Cursor="Hand"
+                    Click="LoginButton_Click"/>
+        </Grid>
+
+        <!-- Основной контент -->
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="280"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Левая панель — фильтры и список -->
+            <StackPanel Grid.Column="0" Margin="0,0,15,0">
+
+                <!-- Фильтр по типу услуги -->
+                <TextBlock Text="Тип услуги" FontSize="14"
+                           FontWeight="Bold" Foreground="#7B2D8B"
+                           Margin="0,0,0,8"/>
+                <ComboBox x:Name="ServiceTypeCombo"
+                          Height="35" Margin="0,0,0,15"
+                          SelectionChanged="ServiceTypeCombo_SelectionChanged"/>
+
+                <!-- Фильтр по мастеру -->
+                <TextBlock Text="Мастер" FontSize="14"
+                           FontWeight="Bold" Foreground="#7B2D8B"
+                           Margin="0,0,0,8"/>
+                <ComboBox x:Name="MasterCombo"
+                          Height="35" Margin="0,0,0,15"
+                          SelectionChanged="MasterCombo_SelectionChanged"/>
+
+                <!-- Список мастеров -->
+                <TextBlock Text="Мастера" FontSize="16"
+                           FontWeight="Bold" Foreground="#7B2D8B"
+                           Margin="0,10,0,10"/>
+                <ListBox x:Name="MastersList"
+                         Height="350"
+                         BorderBrush="#7B2D8B"
+                         SelectionChanged="MastersList_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="5">
+                                <TextBlock Text="{Binding FullName}"
+                                           FontWeight="Bold" FontSize="13"/>
+                                <TextBlock Text="{Binding ServicesText}"
+                                           Foreground="#888" FontSize="11"
+                                           TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+            </StackPanel>
+
+            <!-- Правая панель — доступные записи -->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Text="Доступные записи"
+                           FontSize="18" FontWeight="Bold"
+                           Foreground="#7B2D8B" Margin="0,0,0,15"/>
+
+                <ListBox Grid.Row="1"
+                         x:Name="AppointmentsList"
+                         BorderBrush="#7B2D8B">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#DDD" BorderThickness="0,0,0,1"
+                                    Padding="10" Width="600">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0">
+                                        <TextBlock Text="{Binding DateTimeText}"
+                                                   FontSize="15" FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Master.FullName}"
+                                                   Foreground="#555"/>
+                                        <TextBlock Text="{Binding ServiceType.Name}"
+                                                   Foreground="#7B2D8B"/>
+                                        <TextBlock Text="{Binding PriceText}"
+                                                   Foreground="#333"/>
+                                    </StackPanel>
+
+                                    <Button Grid.Column="1"
+                                            Content="Записаться"
+                                            VerticalAlignment="Center"
+                                            Padding="15,8"
+                                            Background="#7B2D8B"
+                                            Foreground="White"
+                                            BorderThickness="0"
+                                            Cursor="Hand"
+                                            Tag="{Binding AppointmentId}"
+                                            Click="BookButton_Click"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
