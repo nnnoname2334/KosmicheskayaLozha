@@ -1,12 +1,118 @@
 ﻿<Window x:Class="KosmicheskayaLozha.Views.MasterWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KosmicheskayaLozha.Views"
-        mc:Ignorable="d"
-        Title="MasterWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Страница мастера" Height="700" Width="900"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Background="#F5F0FF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Шапка -->
+        <Grid Grid.Row="0" Background="#7B2D8B">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" x:Name="MasterNameText"
+                       FontSize="20" FontWeight="Bold"
+                       Foreground="White"
+                       VerticalAlignment="Center"
+                       Margin="20,0,0,0"/>
+
+            <Button Grid.Column="1" Content="Выйти"
+                    Margin="15" Padding="10,5"
+                    Background="#FF80AB" Foreground="White"
+                    BorderThickness="0" Cursor="Hand"
+                    Click="LogoutButton_Click"/>
+        </Grid>
+
+        <!-- Основной контент -->
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="280"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Левая панель — мои услуги -->
+            <StackPanel Grid.Column="0" Margin="0,0,15,0">
+
+                <TextBlock Text="Мои услуги" FontSize="16"
+                           FontWeight="Bold" Foreground="#7B2D8B"
+                           Margin="0,0,0,10"/>
+
+                <ListBox x:Name="ServicesList"
+                         Height="250" BorderBrush="#7B2D8B">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <CheckBox IsChecked="{Binding IsSelected}"
+                                          Checked="ServiceCheckBox_Changed"
+                                          Unchecked="ServiceCheckBox_Changed"
+                                          Tag="{Binding ServiceTypeId}"/>
+                                <TextBlock Text="{Binding Name}"
+                                           Margin="8,0,0,0"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <TextBlock Text="* Отметьте услуги которые вы оказываете"
+                           Foreground="Gray" FontSize="11"
+                           TextWrapping="Wrap" Margin="0,8,0,0"/>
+            </StackPanel>
+
+            <!-- Правая панель — записи -->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Мои записи"
+                           FontSize="16" FontWeight="Bold"
+                           Foreground="#7B2D8B" Margin="0,0,0,10"/>
+
+                <ListBox Grid.Row="1" x:Name="AppointmentsList"
+                         BorderBrush="#7B2D8B"
+                         SelectionChanged="AppointmentsList_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#DDD" BorderThickness="0,0,0,1"
+                                    Padding="10" Width="500">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0">
+                                        <TextBlock Text="{Binding DateTimeFormatted}"
+                                                   FontSize="15" FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding ServiceType.Name}"
+                                                   Foreground="#7B2D8B"/>
+                                        <TextBlock Text="{Binding Client.FullName}"
+                                                   Foreground="#555"/>
+                                    </StackPanel>
+
+                                    <Border Grid.Column="1"
+                                            Background="{Binding StatusColor}"
+                                            Padding="10,5"
+                                            VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Status}"
+                                                   Foreground="White"
+                                                   FontWeight="Bold"/>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

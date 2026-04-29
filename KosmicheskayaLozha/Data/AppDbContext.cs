@@ -28,7 +28,19 @@ namespace KosmicheskayaLozha.Data
 
             modelBuilder.Entity<Appointment>().Ignore(a => a.DateTimeText);
             modelBuilder.Entity<Appointment>().Ignore(a => a.PriceText);
-
+            modelBuilder.Entity<Appointment>().Ignore(a => a.DateTimeFormatted);
+            modelBuilder.Entity<Appointment>().Ignore(a => a.StatusColor);
+            modelBuilder.Entity<Order>().Ignore(o => o.OrderDateFormatted);
+            modelBuilder.Entity<Order>().Ignore(o => o.DeliveryDateFormatted);
+            modelBuilder.Entity<Order>().Ignore(o => o.TotalText);
+            modelBuilder.Entity<Cart>().ToTable("Cart");
+            modelBuilder.Entity<Order>().ToTable("Orders");
+            modelBuilder.Entity<OrderItem>().ToTable("OrderItems");
+            modelBuilder.Entity<Product>().Ignore(p => p.PriceText);
+            modelBuilder.Entity<Product>().Ignore(p => p.DiscountText);
+            modelBuilder.Entity<Product>().Ignore(p => p.FrozenText);
+            modelBuilder.Entity<Product>().Ignore(p => p.FreezeButtonText);
+            modelBuilder.Entity<ServiceType>().Ignore(s => s.PriceText);
             // Связь Appointment → Client
             modelBuilder.Entity<Appointment>()
                 .HasOptional(a => a.Client)
@@ -48,6 +60,18 @@ namespace KosmicheskayaLozha.Data
                 .HasRequired(ms => ms.Master)
                 .WithMany(u => u.MasterServices)
                 .HasForeignKey(ms => ms.MasterId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Order>()
+                .HasRequired(o => o.Client)
+                .WithMany(u => u.Orders)
+                .HasForeignKey(o => o.ClientId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Cart>()
+                .HasRequired(c => c.Client)
+                .WithMany(u => u.CartItems)
+                .HasForeignKey(c => c.ClientId)
                 .WillCascadeOnDelete(false);
         }
     }

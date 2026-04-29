@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KosmicheskayaLozha.Models
 {
@@ -14,5 +15,14 @@ namespace KosmicheskayaLozha.Models
 
         public User Client { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; }
+
+        
+        public string OrderDateFormatted { get; set; }
+
+     
+        public string DeliveryDateFormatted { get; set; }
+
+    
+        public string TotalText { get; set; }
     }
 }

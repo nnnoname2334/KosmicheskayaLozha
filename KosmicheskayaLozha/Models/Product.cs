@@ -19,5 +19,9 @@
         public decimal FinalPrice => Price * (1 - Discount / 100m);
         // Нужна ли подсветка
         public bool HasBigDiscount => Discount > 15;
+        public string PriceText { get; set; }
+        public string DiscountText { get; set; }
+        public string FrozenText { get; set; }
+        public string FreezeButtonText { get; set; }
     }
 }

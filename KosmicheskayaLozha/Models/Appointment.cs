@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.ComponentModel.DataAnnotations.Schema;
 namespace KosmicheskayaLozha.Models
 {
     public class Appointment
@@ -21,5 +21,10 @@ namespace KosmicheskayaLozha.Models
         public string DateTimeText { get; set; }
         
         public string PriceText { get; set; }
+       
+        public string DateTimeFormatted { get; set; }
+
+        
+        public string StatusColor { get; set; }
     }
 }

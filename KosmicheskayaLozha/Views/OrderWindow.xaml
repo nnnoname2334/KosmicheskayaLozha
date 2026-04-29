@@ -1,0 +1,67 @@
+﻿<Window x:Class="KosmicheskayaLozha.Views.OrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Оформление заказа" Height="400" Width="450"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Grid Background="#F5F0FF" Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Оформление заказа"
+                   FontSize="20" FontWeight="Bold"
+                   Foreground="#7B2D8B" Margin="0,0,0,20"/>
+
+        <TextBlock Grid.Row="1" Text="Дата получения"
+                   FontSize="14" FontWeight="Bold"
+                   Foreground="#7B2D8B" Margin="0,0,0,8"/>
+
+        <DatePicker Grid.Row="2" x:Name="DeliveryDatePicker"
+                    Height="35" Margin="0,0,0,5"
+                    BorderBrush="#7B2D8B"/>
+
+        <TextBlock Grid.Row="3" x:Name="DateHintText"
+                   Text="Выберите дату (не более 7 дней от сегодня)"
+                   Foreground="Gray" FontSize="11"
+                   Margin="0,0,0,15"/>
+
+        <TextBlock Grid.Row="4" Text="Способ оплаты"
+                   FontSize="14" FontWeight="Bold"
+                   Foreground="#7B2D8B" Margin="0,0,0,8"/>
+
+        <ComboBox Grid.Row="5" x:Name="PaymentCombo"
+                  Height="35" Margin="0,0,0,20"
+                  BorderBrush="#7B2D8B">
+            <ComboBoxItem Content="Наличные" IsSelected="True"/>
+            <ComboBoxItem Content="Карта"/>
+            <ComboBoxItem Content="СБП"/>
+        </ComboBox>
+
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="Отмена"
+                    Height="40" Margin="0,0,10,0"
+                    Background="#DDD" Foreground="#333"
+                    BorderThickness="0" Cursor="Hand"
+                    Click="CancelButton_Click"/>
+
+            <Button Grid.Column="1" Content="Заказать"
+                    Height="40" Margin="10,0,0,0"
+                    Background="#7B2D8B" Foreground="White"
+                    BorderThickness="0" Cursor="Hand"
+                    Click="OrderButton_Click"/>
+        </Grid>
+    </Grid>
+</Window>
