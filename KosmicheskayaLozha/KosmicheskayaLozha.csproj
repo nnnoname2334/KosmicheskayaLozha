@@ -78,6 +78,24 @@
     <Compile Include="Views\MainMenuWindow.xaml.cs">
       <DependentUpon>MainMenuWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ManagerCreateAppointmentWindow.xaml.cs">
+      <DependentUpon>ManagerCreateAppointmentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManagerEditManufacturerWindow.xaml.cs">
+      <DependentUpon>ManagerEditManufacturerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManagerEditProductTypeWindow.xaml.cs">
+      <DependentUpon>ManagerEditProductTypeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManagerEditProductWindow.xaml.cs">
+      <DependentUpon>ManagerEditProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManagerEditServiceTypeWindow.xaml.cs">
+      <DependentUpon>ManagerEditServiceTypeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManagerRescheduleWindow.xaml.cs">
+      <DependentUpon>ManagerRescheduleWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ManagerWindow.xaml.cs">
       <DependentUpon>ManagerWindow.xaml</DependentUpon>
     </Compile>
@@ -126,6 +144,30 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ManagerCreateAppointmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ManagerEditManufacturerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ManagerEditProductTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ManagerEditProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ManagerEditServiceTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ManagerRescheduleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
