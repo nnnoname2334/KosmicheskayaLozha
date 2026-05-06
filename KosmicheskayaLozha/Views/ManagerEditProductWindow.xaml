@@ -1,12 +1,82 @@
 ﻿<Window x:Class="KosmicheskayaLozha.Views.ManagerEditProductWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KosmicheskayaLozha.Views"
-        mc:Ignorable="d"
-        Title="ManagerEditProductWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Товар" Height="550" Width="450"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <ScrollViewer>
+        <Grid Background="#F5F0FF" Margin="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" x:Name="TitleText"
+                       FontSize="18" FontWeight="Bold"
+                       Foreground="#7B2D8B" Margin="0,0,0,20"/>
+
+            <TextBlock Grid.Row="1" Text="Название" FontWeight="Bold"
+                       Foreground="#555" Margin="0,0,0,5"/>
+            <TextBox Grid.Row="2" x:Name="NameBox" Height="35"
+                     Padding="8,5" BorderBrush="#7B2D8B" Margin="0,0,0,10"/>
+
+            <TextBlock Grid.Row="3" Text="Цена (руб.)" FontWeight="Bold"
+                       Foreground="#555" Margin="0,0,0,5"/>
+            <TextBox Grid.Row="4" x:Name="PriceBox" Height="35"
+                     Padding="8,5" BorderBrush="#7B2D8B" Margin="0,0,0,10"/>
+
+            <TextBlock Grid.Row="5" Text="Скидка (%)" FontWeight="Bold"
+                       Foreground="#555" Margin="0,0,0,5"/>
+            <TextBox Grid.Row="6" x:Name="DiscountBox" Height="35"
+                     Padding="8,5" BorderBrush="#7B2D8B" Margin="0,0,0,10"/>
+
+            <TextBlock Grid.Row="7" Text="Описание" FontWeight="Bold"
+                       Foreground="#555" Margin="0,0,0,5"/>
+            <TextBox Grid.Row="8" x:Name="DescriptionBox" Height="70"
+                     Padding="8,5" BorderBrush="#7B2D8B"
+                     TextWrapping="Wrap" AcceptsReturn="True"
+                     Margin="0,0,0,10"/>
+
+            <TextBlock Grid.Row="9" Text="Производитель" FontWeight="Bold"
+                       Foreground="#555" Margin="0,0,0,5"/>
+            <ComboBox Grid.Row="10" x:Name="ManufacturerCombo" Height="35"
+                      BorderBrush="#7B2D8B" Margin="0,0,0,10"/>
+
+            <TextBlock Grid.Row="11" Text="Тип товара" FontWeight="Bold"
+                       Foreground="#555" Margin="0,0,0,5"/>
+            <ComboBox Grid.Row="12" x:Name="ProductTypeCombo" Height="35"
+                      BorderBrush="#7B2D8B" Margin="0,0,0,20"/>
+
+            <Grid Grid.Row="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="Отмена"
+                        Height="40" Margin="0,0,10,0"
+                        Background="#DDD" Foreground="#333"
+                        BorderThickness="0" Cursor="Hand"
+                        Click="CancelButton_Click"/>
+                <Button Grid.Column="1" Content="Сохранить"
+                        Height="40" Margin="10,0,0,0"
+                        Background="#7B2D8B" Foreground="White"
+                        BorderThickness="0" Cursor="Hand"
+                        Click="SaveButton_Click"/>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
 </Window>
