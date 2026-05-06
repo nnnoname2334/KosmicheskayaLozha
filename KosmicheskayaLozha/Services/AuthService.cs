@@ -5,7 +5,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Windows;
 
 namespace KosmicheskayaLozha.Services
 {
@@ -24,26 +23,14 @@ namespace KosmicheskayaLozha.Services
         {
             var hash = HashPassword(password);
 
-            MessageBox.Show($"Введён хеш: [{hash}]\nДлина: {hash.Length}");
-
             using (var db = new AppDbContext())
             {
-                // Сначала ищем просто по логину
                 var user = db.Users
-                    .FirstOrDefault(u => u.Login == login);
+                    .Include(u => u.Role)
+                    .FirstOrDefault(u => u.Login == login &&
+                                        u.PasswordHash == hash);
 
-                if (user != null)
-                    db.Entry(user).Reference(u => u.Role).Load();
-
-                if (user == null)
-                {
-                    MessageBox.Show("Пользователь по логину не найден!");
-                    return null;
-                }
-
-                MessageBox.Show($"Найден пользователь: {user.Login}\nХеш в БД: [{user.PasswordHash}]\nДлина: {user.PasswordHash.Length}\nСовпадает: {user.PasswordHash == hash}");
-
-                if (user.PasswordHash != hash) return null;
+                if (user == null) return null;
                 if (user.IsFrozen) return null;
 
                 return user;

@@ -30,10 +30,8 @@ namespace KosmicheskayaLozha
                 return;
             }
 
-            // Сохраняем пользователя в сессию
             AppSession.CurrentUser = user;
 
-            // Открываем нужную страницу в зависимости от роли
             Window nextWindow = null;
 
             switch (user.Role.RoleName)
@@ -56,10 +54,6 @@ namespace KosmicheskayaLozha
             {
                 nextWindow.Show();
                 this.Close();
-            }
-            else
-            {
-                MessageBox.Show($"nextWindow = null! Роль: '{user.Role?.RoleName ?? "NULL"}'");
             }
         }
     }
