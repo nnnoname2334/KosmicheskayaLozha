@@ -1,7 +1,7 @@
 ﻿<Window x:Class="KosmicheskayaLozha.Views.ManagerEditServiceTypeWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Тип услуги" Height="300" Width="400"
+        Title="Тип услуги" Height="380" Width="400"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
     <Grid Background="#F5F0FF" Margin="30">
