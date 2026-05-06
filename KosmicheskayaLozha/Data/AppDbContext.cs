@@ -24,6 +24,8 @@ namespace KosmicheskayaLozha.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>().Ignore(u => u.FrozenText);
+            modelBuilder.Entity<User>().Ignore(u => u.FreezeButtonText);
             modelBuilder.Entity<User>().Ignore(u => u.ServicesText);
 
             modelBuilder.Entity<Appointment>().Ignore(a => a.DateTimeText);
